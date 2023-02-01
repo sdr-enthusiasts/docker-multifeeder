@@ -1,6 +1,9 @@
 # docker-multifeeder
 Feed multiple ADS-B and MLAT aggregators from a single container
 
+[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/sdr-enthusiasts/docker-multifeeder/latest)](https://github.com/sdr-enthusiasts/docker-multifeeder)
+[![Discord](https://img.shields.io/discord/734090820684349521)](https://discord.gg/sTf9uYF)
+
 ## What is it?
 This container enables the user to quickly add feeds to the "new" ADS-B and MLAT aggregators that have popped up.
 It includes @wiedehopf's optimized versions of `readsb` and `mlat_client`.
@@ -70,7 +73,7 @@ See the `docker-compose.yml` example below.
 
 ## Getting Help
 
-You can log an issue on the project's GitHub. I also have a Discord channel, feel free to join and converse. The #adsb-containers channel is appropriate for conversations about this package.
+You can log an issue on the project's GitHub. I also have a [Discord channel](https://discord.gg/sTf9uYF), feel free to join and converse. The #adsb-containers channel is appropriate for conversations about this package.
 
 ## Summary of License Terms
 
