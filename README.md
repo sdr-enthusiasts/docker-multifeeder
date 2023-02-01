@@ -1,7 +1,7 @@
 # docker-multifeeder
 Feed multiple ADS-B and MLAT aggregators from a single container
 
-[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/sdr-enthusiasts/docker-multifeeder/latest)](https://github.com/sdr-enthusiasts/docker-multifeeder)
+[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/kx1t/multifeeder/latest)](https://github.com/sdr-enthusiasts/docker-multifeeder)
 [![Discord](https://img.shields.io/discord/734090820684349521)](https://discord.gg/sTf9uYF)
 
 ## What is it?
