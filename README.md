@@ -71,6 +71,12 @@ See the `docker-compose.yml` example below.
       - /var/log
 ```
 
+## Receiving MLAT results
+If you run the `mlathub` container, or if you want to make the MLAT results available to your visualization software (piaware, tar1090, etc), you need to tell these containers to connect to the MLAT results port(s) of the `multifeeder` container. For example, using the settings in the sample `docker-compose.yml` (above) as a guideline:
+```
+      - READSB_NET_CONNECTOR=...;multifeeder,39000,beast_in; multifeeder,39001,beast_in;multifeeder,39002,beast_in
+```
+
 ## Getting Help
 
 You can log an issue on the project's GitHub. I also have a [Discord channel](https://discord.gg/sTf9uYF), feel free to join and converse. The #adsb-containers channel is appropriate for conversations about this package.
