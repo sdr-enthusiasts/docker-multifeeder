@@ -40,7 +40,7 @@ See the `docker-compose.yml` example below.
 
 #### `MLAT_CONFIG` syntax
 
-This variable allows you to configure outgoing MLAT connections and allows you optionally to define a port where MLAT returned results are made available. The variable takes a semicolon (`;`) separated list of `mlatserver,mlatserver_port[,results_port[,extra_params_1]]`, where:
+This variable allows you to configure outgoing MLAT connections and allows you optionally to define a port where MLAT returned results are made available. The variable takes a semicolon (`;`) separated list of `mlatserver,mlatserver_port[,results_port[,extra_params]]`, where:
 
 * `mlat_server` is a hostname or IP address of the MLAT server
 * `mlat_port` is the TCP or UDP port number of the MLAT server
@@ -78,6 +78,7 @@ You can log an issue on the project's GitHub. I also have a [Discord channel](ht
 ## Summary of License Terms
 
 Copyright (C) 2023, Ramon F. Kolb (kx1t)
+
 `readsb` and `mlat_client` are copyright by their authors and used under the terms of the GPLv3 license.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
