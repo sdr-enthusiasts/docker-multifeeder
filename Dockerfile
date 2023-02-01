@@ -1,4 +1,4 @@
-FROM ghcr.io/sdr-enthusiasts/docker-tar1090
+FROM ghcr.io/sdr-enthusiasts/docker-baseimage:wreadsb
 
 LABEL org.opencontainers.image.source = "https://github.com/sdr-enthusiasts/docker-multifeeder"
 
