@@ -2,7 +2,7 @@
 # shellcheck shell=bash disable=SC2015,SC2016
 
 APPNAME="$(hostname)/mlat-client"
-echo "[${APPNAME}][$(date)] Started as an s6 service"
+echo "[$(date)][${APPNAME}] Started as an s6 service"
 
 MLAT_CMD="/usr/bin/mlat-client"
 [[ "${MLAT_INPUT_TYPE}" == "" ]] && MLAT_INPUT_TYPE="auto" || true
@@ -14,13 +14,13 @@ declare -A pid_array
 
 if [[ -z "$MLAT_CONFIG" ]]
 then
-    echo "[${APPNAME}][$(date)] MLAT_CONFIG not defined - MLAT will be disabled."
+    echo "[$(date)][${APPNAME}] MLAT_CONFIG not defined - MLAT will be disabled."
     sleep infinity
 fi
 
 if [[ -z "$MLAT_USER" ]]
 then
-    echo "[${APPNAME}][$(date)] MLAT_USER not defined - MLAT will be disabled."
+    echo "[$(date)][${APPNAME}] MLAT_USER not defined - MLAT will be disabled."
     sleep infinity
 fi
 
@@ -37,7 +37,7 @@ do
     # Check if the params array has values for the mandatory elements:
     if [[ -z "${params[0]}" ]] || [[ -z "${params[1]}" ]]
     then
-        echo "[${APPNAME}][$(date)] ERROR -- MLAT_CONFIG is malformed: \"${instance}\". Stopping MLAT execution."
+        echo "[$(date)][${APPNAME}] ERROR -- MLAT_CONFIG is malformed: \"${instance}\". Stopping MLAT execution."
          # shellcheck disable=SC2046
         kill $(ps -s $$ -o pid=)   
         sleep infinity
@@ -58,8 +58,8 @@ do
     execstring="$(echo ${MLAT_CMD} ${MLAT_PARAM[*]} | xargs)"
 
     # run this Mlat_client instance in the background:
-    echo  "[${APPNAME}][$(date)] starting: ${MLAT_CMD} ${MLAT_PARAM[*]}"
-    { exec ${execstring} 2>&1 1>/dev/null | stdbuf -o0 awk -v app="${APPNAME}" -v inst="${params[0]}" '{print "[" app "][" inst "] " $0}'; } &
+    echo  "[$(date)][${APPNAME}] starting: ${MLAT_CMD} ${MLAT_PARAM[*]}"
+    { exec ${execstring} 2>&1 1>/dev/null | stdbuf -o0 awk -v app="${APPNAME}" -v inst="${params[0]}" '{print "[" strftime("%Y/%m/%d %H:%M:%S", systime()) "][" app "][" inst "] " $0}'; } &
     pid_array[$!]="${MLAT_PARAM[*]}"
     sleep 5
 done
@@ -73,10 +73,10 @@ do
         then
             # it exited - let's restart:
             sleep "${RESTARTTIMER}"
-            echo  "[${APPNAME}][$(date)] MLAT_Client $(awk '{print $6}' <<< "${pid_array[$mlat_pid]}") exited. Attempting to restart."
+            echo  "[$(date)][${APPNAME}] MLAT_Client $(awk '{print $6}' <<< "${pid_array[$mlat_pid]}") exited. Attempting to restart."
             # shellcheck disable=SC2086
             execstring="$(echo ${MLAT_CMD} ${pid_array[$mlat_pid]} | xargs)"
-            { exec ${execstring} 2>&1 1>/dev/null | stdbuf -o0 awk -v app="${APPNAME}" -v inst="$(awk '{split($6,x,":"); print x[1]}' <<< "${pid_array[$mlat_pid]}")" '{print "[" app "][" inst "] " $0}'; } &
+            { exec ${execstring} 2>&1 1>/dev/null | stdbuf -o0 awk -v app="${APPNAME}" -v inst="$(awk '{split($6,x,":"); print x[1]}' <<< "${pid_array[$mlat_pid]}")" '{print "[" strftime("%Y/%m/%d %H:%M:%S", systime()) "][" app "][" inst "] " $0}'; } &
             pid_array[$!]="${pid_array[${mlat_pid}]}"
             unset "pid_array[${mlat_pid}]"
         fi
