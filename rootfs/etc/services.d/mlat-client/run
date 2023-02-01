@@ -5,24 +5,12 @@ APPNAME="$(hostname)/mlat-client"
 echo "[$(date)][${APPNAME}] Started as an s6 service"
 
 MLAT_CMD="/usr/bin/mlat-client"
-[[ "${MLAT_INPUT_TYPE}" == "" ]] && MLAT_INPUT_TYPE="auto" || true
+
 RESTARTTIMER=15
 declare -A pid_array
 
 # MLAT_CONFIG has the following format:
 # MLAT_CONFIG=mlatserver_1,mlatserver_port_1[,results_port_1[,extra_params_1]];mlatserver_2,mlatserver_port_2[,results_port_2[,extra_params_2]] etc
-
-if [[ -z "$MLAT_CONFIG" ]]
-then
-    echo "[$(date)][${APPNAME}] MLAT_CONFIG not defined - MLAT will be disabled."
-    sleep infinity
-fi
-
-if [[ -z "$MLAT_USER" ]]
-then
-    echo "[$(date)][${APPNAME}] MLAT_USER not defined - MLAT will be disabled."
-    sleep infinity
-fi
 
 # parse MLAT_CONFIG string into mlat_configs array
 readarray -td ";" mlat_configs < <(printf '%s' "${MLAT_CONFIG}")
