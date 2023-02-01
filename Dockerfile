@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.source = "https://github.com/sdr-enthusiasts/dock
 
 ENV URL_MLAT_CLIENT_REPO="https://github.com/adsbxchange/mlat-client.git" \
     PRIVATE_MLAT="false" \
-    MLAT_INPUT_TYPE="dump1090"
+    MLAT_INPUT_TYPE="auto"
 
 RUN set -x && \
 # define packages needed for installation and general management of the container:
