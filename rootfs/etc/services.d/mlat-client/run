@@ -1,6 +1,23 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash disable=SC2015,SC2016
 
+
+#---------------------------------------------------------------------------------------------
+# Copyright (C) 2023, Ramon F. Kolb (kx1t)
+#
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the
+# Free Software Foundation, either version 3 of the License, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with this program.
+# If not, see <https://www.gnu.org/licenses/>.
+#---------------------------------------------------------------------------------------------
+
 APPNAME="$(hostname)/mlat-client"
 echo "[$(date)][${APPNAME}] Started as an s6 service"
 
@@ -8,6 +25,20 @@ MLAT_CMD="/usr/bin/mlat-client"
 
 RESTARTTIMER=15
 declare -A pid_array
+
+APPNAME="$0"
+
+if [[ -z "$MLAT_CONFIG" ]]
+then
+    echo "[$(date)][${APPNAME}] Warning: MLAT_CONFIG not defined - MLAT will be disabled."
+    sleep infinity
+fi
+
+if [[ -z "$MLAT_USER" ]]
+then
+    echo "[$(date)][${APPNAME}] ERROR: MLAT_USER not defined - MLAT will be disabled."
+    sleep infinity
+fi
 
 # MLAT_CONFIG has the following format:
 # MLAT_CONFIG=mlatserver_1,mlatserver_port_1[,results_port_1[,extra_params_1]];mlatserver_2,mlatserver_port_2[,results_port_2[,extra_params_2]] etc
