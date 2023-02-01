@@ -9,7 +9,6 @@ This container enables the user to quickly add feeds to the "new" ADS-B and MLAT
 It includes @wiedehopf's optimized versions of `readsb` and `mlat_client`.
 
 ## How to configure?
-
 - For ADS-B, put your (ADS-B, UAT, JAERO, HFDL, etc) input sources and the outputs to the target services in the `READSB_NET_CONNECTOR` parameter
 - For MLAT, define the MLAT server targets in the `MLAT_CONFIG` parameter
 - For MLAT, `READSB_LAT`, `READSB_LON`, and `READSB_ALT` must also be defined.
@@ -60,7 +59,7 @@ See the `docker-compose.yml` example below.
     restart: always
     environment:
       - TZ=${FEEDER_TZ}
-      - READSB_NET_CONNECTOR=readsb,30005,beast_in;dump978,30978, raw_in;feed.adsb.fi,30004,beast_out;feed.adsb.one,64004,beast_out;in.adsb.lol,30004,beast_out
+      - READSB_NET_CONNECTOR=readsb,30005,beast_in;dump978,30978,raw_in;feed.adsb.fi,30004,beast_out;feed.adsb.one,64004,beast_out;in.adsb.lol,30004,beast_out
       - MLAT_USER=SITE_NAME
       - MLAT_CONFIG=feed.adsb.fi,31090,39000;feed.adsb.one,64006,39001;in.adsb.lol,31090,39002
       - READSB_LAT=${FEEDER_LAT}
@@ -77,15 +76,32 @@ If you run the `mlathub` container, or if you want to make the MLAT results avai
       - READSB_NET_CONNECTOR=...;multifeeder,39000,beast_in; multifeeder,39001,beast_in;multifeeder,39002,beast_in
 ```
 
-## Getting Help
+## Use of `beast-reduce` to lower the system load
+In order to alleviate the load on your system and on the aggregators you are feeding, you can connect to the `readsb` "`beast-reduce`" port. This port needs to be enabled in your `readsb` or `dump1090` instance.
 
+These are the configuration changes that you need to make (or verify that they have been made):
+
+- Containerized setup: make sure that for the the `readsb-protobuf` or `tar1090` container, the `READSB_BEAST_REDUCE_PORT` is set as follows:
+```
+     - READSB_NET_BEAST_REDUCE_OUT_PORT=30105
+```
+- Non-containerized setup: make sure the following command line parameter is included with `readsb` or `dump1090[-fa|-mutability]` setup:
+```
+--net-beast-reduce-out-port=30105
+```
+
+Once you have done this, you can point your `multifeeder` instance at this port:
+```
+      - READSB_NET_CONNECTOR=readsb,30105,beast_in;...
+```
+
+## Getting Help
 You can log an issue on the project's GitHub. I also have a [Discord channel](https://discord.gg/sTf9uYF), feel free to join and converse. The #adsb-containers channel is appropriate for conversations about this package.
 
 ## Summary of License Terms
+Multifeeder is Copyright (C) 2023, Ramon F. Kolb (kx1t)
 
-Copyright (C) 2023, Ramon F. Kolb (kx1t)
-
-`readsb` and `mlat_client` are copyright by their authors and used under the terms of the GPLv3 license.
+The `multifeeder` container incorporates `readsb` and `mlat_client`, are copyright by their authors and used under the terms of the GPLv3 license.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
