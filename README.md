@@ -48,7 +48,7 @@ This variable allows you to configure outgoing MLAT connections and allows you o
 
 See the `docker-compose.yml` example below.
 
-## docker-compose.yml` example
+## `docker-compose.yml` snippet
 
 ```
   multifeeder:
