@@ -18,15 +18,13 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #---------------------------------------------------------------------------------------------
 
-APPNAME="$(hostname)/mlat-client"
+APPNAME="mlat-client"
 echo "[$(date)][${APPNAME}] Started as an s6 service"
 
 MLAT_CMD="/usr/bin/mlat-client"
 
 RESTARTTIMER=15
 declare -A pid_array
-
-APPNAME="$0"
 
 if [[ -z "$MLAT_CONFIG" ]]
 then
