@@ -26,15 +26,15 @@ MLAT_CMD="/usr/bin/mlat-client"
 RESTARTTIMER=15
 declare -A pid_array
 
-if [[ -z "$MLAT_CONFIG" ]]
+if [[ -z "${MLAT_CONFIG}" ]]
 then
     echo "[$(date)][${APPNAME}] Warning: MLAT_CONFIG not defined - MLAT will be disabled."
     sleep infinity
 fi
 
-if [[ -z "$MLAT_USER" ]]
+if [[ -z "${MLAT_USER}" ]] && [[ -z "${UUID}" ]]
 then
-    echo "[$(date)][${APPNAME}] ERROR: MLAT_USER not defined - MLAT will be disabled."
+    echo "[$(date)][${APPNAME}] ERROR: either UUID or MLAT_USER must be defined - MLAT will be disabled."
     sleep infinity
 fi
 
@@ -67,7 +67,7 @@ do
     MLAT_PARAM+=(--lat "${READSB_LAT}")
     MLAT_PARAM+=(--lon "${READSB_LON}")
     MLAT_PARAM+=(--alt "${READSB_ALT}")
-    MLAT_PARAM+=(--user "${MLAT_USER}")
+    [[ -n "${UUID}" ]] && MLAT_PARAM+=(--user "${UUID}") || MLAT_PARAM+=(--user "${MLAT_USER}")
     [[ -n "${params[2]}" ]] && MLAT_PARAM+=("--results beast,listen,${params[2]}") || true
     [[ -n "${params[3]}" ]] && MLAT_PARAM+=("${params[3]}") || true
 

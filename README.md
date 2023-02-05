@@ -20,6 +20,8 @@ It includes @wiedehopf's optimized versions of `readsb` and `mlat_client`.
 | `READSB_LAT` | Reference/receiver surface latitude |
 | `READSB_LON` | Reference/receiver surface longitude |
 | `READSB_ALT` | Reference/receiver altitude above ground. Add `m` for meters or `ft` for feet |
+| `UUID`       | UUID to be used with `beast_reduce_plus_out` protocol for `READSB_NET_CONNECTOR`. This will also be used for `MLAT_USER` if that variable is not defined. See below on how to generate the value of this parameter |
+| `MLAT_USER` | Username to be used with MLAT. This variable is mandatory if `MLAT_CONFIG` is used and `UUID` is not set; it will be overruled by `UUID` if that variable is set |
 
 #### `READSB_NET_CONNECTOR` syntax
 
@@ -28,6 +30,7 @@ This variable allows you to configure incoming and outgoing connections. The var
 * `host` is an IP address. Specify an IP/hostname/containername for incoming or outgoing connections.
 * `port` is a TCP port number
 * `protocol` can be one of the following:
+  * `beast_reduce_plus_out`: Beast-format output with extra data (UUID). This is the preferred format when feeding the new aggregator services
   * `beast_out`: Beast-format output
   * `beast_in`: Beast-format input
   * `raw_out`: Raw output
@@ -36,6 +39,16 @@ This variable allows you to configure incoming and outgoing connections. The var
   * `vrs_out`: SBS-format output
 
 See the `docker-compose.yml` example below.
+
+#### How to generate a UUID
+
+If you already have a UUID that was generated for the ADSBExchange service, feel free to reuse that one. If you don't have one, you can generate one by logging onto you Linux machine (Raspberry Pi, etc.) and giving this command:
+
+```
+cat  /proc/sys/kernel/random/uuid
+```
+
+You can use the output string  of this command (in format of `00000000-0000-0000-0000-000000000000`) as your UUID
 
 #### `MLAT_CONFIG` syntax
 
@@ -59,8 +72,8 @@ See the `docker-compose.yml` example below.
     restart: always
     environment:
       - TZ=${FEEDER_TZ}
-      - READSB_NET_CONNECTOR=readsb,30005,beast_in;dump978,30978,raw_in;feed.adsb.fi,30004,beast_out;feed.adsb.one,64004,beast_out;in.adsb.lol,30004,beast_out
-      - MLAT_USER=SITE_NAME
+      - READSB_NET_CONNECTOR=readsb,30005,beast_in;dump978,30978,raw_in;feed.adsb.fi,30004,beast_reduce_plus_out;feed.adsb.one,64004,beast_reduce_plus_out;in.adsb.lol,30004,beast_reduce_plus_out
+      - UUID=00000000-0000-0000-0000-000000000000
       - MLAT_CONFIG=feed.adsb.fi,31090,39000;feed.adsb.one,64006,39001;in.adsb.lol,31090,39002
       - READSB_LAT=${FEEDER_LAT}
       - READSB_LON=${FEEDER_LONG}
