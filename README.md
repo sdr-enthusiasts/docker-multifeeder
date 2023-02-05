@@ -42,13 +42,13 @@ See the `docker-compose.yml` example below.
 
 #### How to generate a UUID
 
-If you already have a UUID that was generated for the ADSBExchange service, feel free to reuse that one. If you don't have one, you can generate one by logging onto you Linux machine (Raspberry Pi, etc.) and giving this command:
+If you already have a `UUID` that was generated for the ADSBExchange service, feel free to reuse that one. If you don't have one, you can generate one by logging onto you Linux machine (Raspberry Pi, etc.) and giving this command:
 
 ```
 cat  /proc/sys/kernel/random/uuid
 ```
 
-You can use the output string  of this command (in format of `00000000-0000-0000-0000-000000000000`) as your UUID
+You can use the output string of this command (in format of `00000000-0000-0000-0000-000000000000`) as your UUID
 
 #### `MLAT_CONFIG` syntax
 
@@ -63,7 +63,7 @@ See the `docker-compose.yml` example below.
 
 ## `docker-compose.yml` snippet
 
-```
+```yaml
   multifeeder:
     image: ghcr.io/sdr-enthusiasts/docker-multifeeder
     tty: true
