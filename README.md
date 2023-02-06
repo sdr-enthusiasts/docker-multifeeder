@@ -84,9 +84,15 @@ See the `docker-compose.yml` example below.
 ```
 
 ## Receiving MLAT results
-If you run the `mlathub` container, or if you want to make the MLAT results available to your visualization software (piaware, tar1090, etc), you need to tell these containers to connect to the MLAT results port(s) of the `multifeeder` container. For example, using the settings in the sample `docker-compose.yml` (above) as a guideline:
+If you run the `mlathub` container, or if you want to make the MLAT results available to your visualization software (piaware, tar1090, etc), you need to tell these containers to connect to the MLAT results port(s) of the `multifeeder` container. For example, using the settings in the sample `docker-compose.yml` (above) as a guideline append the following to your `mlathub` configuration:
 ```
       - READSB_NET_CONNECTOR=...;multifeeder,39000,beast_in;multifeeder,39001,beast_in;multifeeder,39002,beast_in
+```
+
+To update tar1090 to use a specific feed from the `multifeeder` container, update the following environment variables:
+```
+      - MLATHOST=multifeeder
+      - MLATPORT=39000 #or use 39001 or 39002 based on your setup MLAT_CONFIG
 ```
 
 ## Use of `beast-reduce` to lower the system load
