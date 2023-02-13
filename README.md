@@ -72,7 +72,7 @@ See the `docker-compose.yml` example below.
     restart: always
     environment:
       - TZ=${FEEDER_TZ}
-      - READSB_NET_CONNECTOR=readsb,30005,beast_in;dump978,30978,raw_in;feed.adsb.fi,30004,beast_reduce_plus_out;feed.adsb.one,64004,beast_reduce_plus_out;in.adsb.lol,30004,beast_reduce_plus_out
+      - READSB_NET_CONNECTOR=readsb,30005,beast_in;dump978,37981,raw_in;feed.adsb.fi,30004,beast_reduce_plus_out;feed.adsb.one,64004,beast_reduce_plus_out;in.adsb.lol,30004,beast_reduce_plus_out
       - UUID=00000000-0000-0000-0000-000000000000
       - MLAT_CONFIG=feed.adsb.fi,31090,39000;feed.adsb.one,64006,39001;in.adsb.lol,31090,39002
       - READSB_LAT=${FEEDER_LAT}
