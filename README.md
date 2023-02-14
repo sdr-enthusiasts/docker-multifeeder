@@ -72,9 +72,9 @@ See the `docker-compose.yml` example below.
     restart: always
     environment:
       - TZ=${FEEDER_TZ}
-      - READSB_NET_CONNECTOR=readsb,30005,beast_in;dump978,37981,raw_in;feed.adsb.fi,30004,beast_reduce_plus_out;feed.adsb.one,64004,beast_reduce_plus_out;in.adsb.lol,30004,beast_reduce_plus_out
+      - READSB_NET_CONNECTOR=readsb,30005,beast_in;dump978,37981,raw_in;feed.adsb.fi,30004,beast_reduce_plus_out;feed.adsb.one,64004,beast_reduce_plus_out;in.adsb.lol,30004,beast_reduce_plus_out;feed.theairtraffic.com,30004,beast_out
       - UUID=00000000-0000-0000-0000-000000000000
-      - MLAT_CONFIG=feed.adsb.fi,31090,39000;feed.adsb.one,64006,39001;in.adsb.lol,31090,39002
+      - MLAT_CONFIG=feed.adsb.fi,31090,39000;feed.adsb.one,64006,39001;in.adsb.lol,31090,39002;feed.theairtraffic.com,31090,39003;
       - READSB_LAT=${FEEDER_LAT}
       - READSB_LON=${FEEDER_LONG}
       - READSB_ALT=${FEEDER_ALT_M}m
@@ -86,7 +86,7 @@ See the `docker-compose.yml` example below.
 ## Receiving MLAT results
 If you run the `mlathub` container, or if you want to make the MLAT results available to your visualization software (piaware, tar1090, etc), you need to tell these containers to connect to the MLAT results port(s) of the `multifeeder` container. For example, using the settings in the sample `docker-compose.yml` (above) as a guideline:
 ```
-      - READSB_NET_CONNECTOR=...;multifeeder,39000,beast_in;multifeeder,39001,beast_in;multifeeder,39002,beast_in
+      - READSB_NET_CONNECTOR=...;multifeeder,39000,beast_in;multifeeder,39001,beast_in;multifeeder,39002,beast_in;multifeeder,39003,beast_in
 ```
 
 ## Use of `beast-reduce` to lower the system load
