@@ -107,6 +107,13 @@ Once you have done this, you can point your `multifeeder` instance at this port:
 ```
       - READSB_NET_CONNECTOR=readsb,30105,beast_in;...
 ```
+## List of Aggregators
+| **Site**          | **readsb_url**         | **readsb_port** | **mlat_url**           | **mlat_port** |
+|-------------------|------------------------|-----------------|------------------------|---------------|
+| [adsb.fi](https://adsb.fi/)           | feed.adsb.fi           |           30004 | feed.adsb.fi           |         31090 |
+| [adsb.one](https://adsb.one/)          | feed.adsb.one          |           64004 | feed.adsb.one          |         64006 |
+| [adsb.lol](https://adsb.lol/)          | feed.adsb.lol          |            1337 | feed.adsb.lol          |          1338 |
+| [theairtraffic.com](https://theairtraffic.com/) | feed.theairtraffic.com |           30004 | feed.theairtraffic.com |         31090 |
 
 ## Getting Help
 You can log an issue on the project's GitHub. I also have a [Discord channel](https://discord.gg/sTf9uYF), feel free to join and converse. The #adsb-containers channel is appropriate for conversations about this package.
