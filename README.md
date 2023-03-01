@@ -21,7 +21,7 @@ It includes @wiedehopf's optimized versions of `readsb` and `mlat_client`.
 | `READSB_LON` | Reference/receiver surface longitude |
 | `READSB_ALT` | Reference/receiver altitude above ground. Add `m` for meters or `ft` for feet |
 | `UUID`       | UUID to be used with `beast_reduce_plus_out` protocol for `READSB_NET_CONNECTOR`. This will also be used for `MLAT_USER` if that variable is not defined. See below on how to generate the value of this parameter |
-| `MLAT_USER` | Username to be used with MLAT. This variable is mandatory if `MLAT_CONFIG` is used and `UUID` is not set; it will be overruled by `UUID` if that variable is set |
+| `MLAT_USER` | Username to be used with MLAT. This variable is mandatory if `MLAT_CONFIG` is used and `UUID` is not set. If `MLAT_USER` is set, its value will be used; if not set, then the value of `UUID` will be used |
 
 #### `READSB_NET_CONNECTOR` syntax
 
