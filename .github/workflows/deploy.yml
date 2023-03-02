@@ -32,7 +32,6 @@ env:
   GHCR_TAG: latest
 
 jobs:
-
   workflow-dispatch:
     name: Triggered via Workflow Dispatch?
     # only run this step if workflow dispatch triggered
@@ -62,6 +61,8 @@ jobs:
     name: Deploy ghcr.io (Multi-Arch)
     needs: [hadolint]
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
 
       # Check out our code
