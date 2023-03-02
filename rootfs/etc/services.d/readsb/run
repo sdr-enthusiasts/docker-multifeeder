@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv bash
-# shellcheck shell=bash
+# shellcheck shell=bash disable=SC2016
 
 mkdir -p /run/readsb
 
@@ -151,7 +151,7 @@ if [[ -n "$READSB_NET_CONNECTOR" ]]; then
     IFS=';' read -r -a READSB_NET_CONNECTOR_ARRAY <<< "$READSB_NET_CONNECTOR"
     for NET_CONNECTOR_ELEMENT in "${READSB_NET_CONNECTOR_ARRAY[@]}"
     do
-        READSB_CMD+=("--net-connector=$NET_CONNECTOR_ELEMENT")
+        READSB_CMD+=("--net-connector=${NET_CONNECTOR_ELEMENT// /}")
     done
 fi
 
