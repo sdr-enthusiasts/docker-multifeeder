@@ -112,16 +112,16 @@ These are the configuration changes that you need to make (or verify that they h
 
 - Containerized setup: make sure that for the the `readsb-protobuf` or `tar1090` container, the `READSB_BEAST_REDUCE_PORT` is set as follows:
 ```
-     - READSB_NET_BEAST_REDUCE_OUT_PORT=30105
+     - READSB_NET_BEAST_REDUCE_OUT_PORT=30006
 ```
 - Non-containerized setup: make sure the following command line parameter is included with `readsb` or `dump1090[-fa|-mutability]` setup:
 ```
---net-beast-reduce-out-port=30105
+--net-beast-reduce-out-port=30006
 ```
 
 Once you have done this, you can point your `multifeeder` instance at this port:
 ```
-      - READSB_NET_CONNECTOR=readsb,30105,beast_in;...
+      - READSB_NET_CONNECTOR=readsb,30006,beast_in;...
 ```
 ## List of Aggregators
 | **Site**          | **readsb_url**         | **readsb_port** | **mlat_url**           | **mlat_port** |
