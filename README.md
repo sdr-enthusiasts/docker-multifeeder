@@ -89,7 +89,7 @@ See the `docker-compose.yml` example below.
       - READSB_LAT=${FEEDER_LAT}
       - READSB_LON=${FEEDER_LONG}
       - READSB_ALT=${FEEDER_ALT_M}m
-      - UUID=01234567-89ab-cdef-0123-4567890acbde
+      - UUID=01234567-89ab-cdef-0123-4567890abcde
       - MLAT_USER=my_station_id_name
 
     tmpfs:
