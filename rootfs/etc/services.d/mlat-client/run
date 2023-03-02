@@ -42,7 +42,7 @@ fi
 # MLAT_CONFIG=mlatserver_1,mlatserver_port_1[,results_port_1[,extra_params_1]];mlatserver_2,mlatserver_port_2[,results_port_2[,extra_params_2]] etc
 
 # parse MLAT_CONFIG string into mlat_configs array
-readarray -td ";" mlat_configs < <(printf '%s' "${MLAT_CONFIG}")
+readarray -td ";" mlat_configs < <(printf '%s' "${MLAT_CONFIG// /}")
 
 # Now loop through the MLAT_CONFIG items and start up an Mlat_client for each of them:
 for instance in "${mlat_configs[@]}"
