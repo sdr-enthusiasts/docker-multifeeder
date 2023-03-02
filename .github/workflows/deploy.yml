@@ -53,8 +53,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: {{ env.GH_LABEL }}
       - name: Pull hadolint/hadolint:latest Image
         run: docker pull hadolint/hadolint:latest
       - name: Run hadolint against Dockerfiles
