@@ -25,7 +25,7 @@ It includes @wiedehopf's optimized versions of `readsb` and `mlat_client`.
 
 #### `READSB_NET_CONNECTOR` syntax
 
-This variable allows you to configure incoming and outgoing connections. The variable takes a semicolon (`;`) separated list of `host,port,protocol`, where:
+This variable allows you to configure incoming and outgoing connections. The variable takes a semicolon (`;`) separated list of `host,port,protocol[,uuid=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX]`, where:
 
 * `host` is an IP address. Specify an IP/hostname/containername for incoming or outgoing connections.
 * `port` is a TCP port number
@@ -37,6 +37,7 @@ This variable allows you to configure incoming and outgoing connections. The var
   * `raw_in`: Raw input
   * `sbs_out`: SBS-format output
   * `vrs_out`: SBS-format output
+* `uuid=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX` is an optional parameter that sets the UUID for this specific instance. It will override the global `UUID` parameter
 
 See the `docker-compose.yml` example below.
 
@@ -75,11 +76,11 @@ See the `docker-compose.yml` example below.
       - READSB_NET_CONNECTOR=
          readsb,30005,beast_in;
          dump978,37981,raw_in;
-         feed.adsb.fi,30004,beast_reduce_plus_out;
-         feed.adsb.one,64004,beast_reduce_plus_out;
-         in.adsb.lol,30004,beast_reduce_plus_out;
-         feed.theairtraffic.com,30004,beast_reduce_plus_out;
-         feed.planespotters.net,30004,beast_reduce_plus_out
+         feed.adsb.fi,30004,beast_reduce_plus_out,uuid=${UUID_ADSBFI};
+         feed.adsb.one,64004,beast_reduce_plus_out,uuid=${UUID_ADSBONE};
+         in.adsb.lol,30004,beast_reduce_plus_out,uuid=${UUID_ADSBLOL};
+         feed.theairtraffic.com,30004,beast_reduce_plus_out,uuid=${UUID_THEAIRTRAFFIC};
+         feed.planespotters.net,30004,beast_reduce_plus_out ,uuid=${UUID_PLANESPOTTERS}
       - MLAT_CONFIG=
          feed.adsb.fi,31090,39000;
          feed.adsb.one,64006,39001;
