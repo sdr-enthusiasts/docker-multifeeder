@@ -80,7 +80,7 @@ See the `docker-compose.yml` example below.
          feed.adsb.one,64004,beast_reduce_plus_out,uuid=${UUID_ADSBONE};
          in.adsb.lol,30004,beast_reduce_plus_out,uuid=${UUID_ADSBLOL};
          feed.theairtraffic.com,30004,beast_reduce_plus_out,uuid=${UUID_THEAIRTRAFFIC};
-         feed.planespotters.net,30004,beast_reduce_plus_out ,uuid=${UUID_PLANESPOTTERS}
+         feed.planespotters.net,30004,beast_reduce_plus_out,uuid=${UUID_PLANESPOTTERS}
       - MLAT_CONFIG=
          feed.adsb.fi,31090,39000;
          feed.adsb.one,64006,39001;
