@@ -1,4 +1,19 @@
 # docker-multifeeder
+
+# NOTE - THIS CONTAINER IS NO LONGER ACTIVELY MAINTAINED
+
+This means:
+
+- no bug fixes
+- no new features
+- minimal support
+
+Please switch over to [Ultrafeeder](https://github.com/sdr-enthusiasts/adsb-ultrafeeder). That container is mostly backwards compatible with MultiFeeder and can do MANY MANY MORE THINGS.
+
+------------------------------------------------------------------------------------------------------
+
+
+
 Feed multiple ADS-B and MLAT aggregators from a single container
 
 [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/kx1t/multifeeder/latest)](https://github.com/sdr-enthusiasts/docker-multifeeder)
