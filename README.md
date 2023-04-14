@@ -8,7 +8,7 @@ This means:
 - no new features
 - minimal support
 
-Please switch over to [Ultrafeeder](https://github.com/sdr-enthusiasts/adsb-ultrafeeder). That container is mostly backwards compatible with MultiFeeder and can do MANY MANY MORE THINGS.
+Please switch over to [Ultrafeeder](https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder). That container is mostly backwards compatible with MultiFeeder and can do MANY MANY MORE THINGS.
 
 ------------------------------------------------------------------------------------------------------
 
